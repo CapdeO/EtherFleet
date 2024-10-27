@@ -37,7 +37,6 @@ contract EtherFleetPirates is
 
     function initialize(
         address _tokenAddress,
-        uint256 _tokenBalance,
         uint256 _cost,
         uint256 _initialCardLimit,
         address[] memory _initialTokenSupported,
@@ -54,15 +53,6 @@ contract EtherFleetPirates is
         mintCost = _cost;
         currentCardLimit = _initialCardLimit;
         fundsReceiver = _initialReceiver;
-
-        require(
-            etherFleetToken.transferFrom(
-                _msgSender(),
-                address(this),
-                _tokenBalance
-            ),
-            "Token transfer error."
-        );
 
         for (uint i = 0; i < _initialTokenSupported.length; i++) {
             tokensSupported[_initialTokenSupported[i]] = true;
